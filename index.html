@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Google AI Studio Project Spec Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    textarea {
+      min-height: 60px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      background: #007bff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Google AI Studio Project Specification Form</h1>
+    <form id="projectForm">
+
+      <!-- Section 1 -->
+      <h2>1. Basic Project Overview</h2>
+      <label>Application Name / Working Title:</label>
+      <input type="text" name="appName" />
+      <label>Primary Purpose / Problem to Solve:</label>
+      <textarea name="purpose"></textarea>
+      <label>Target Audience:</label>
+      <textarea name="audience"></textarea>
+
+      <!-- Section 2 -->
+      <h2>2. Target Platforms & Devices</h2>
+      <label>Primary Target Devices:</label>
+      <input type="text" name="devices" value="All (Desktop, Tablet, Mobile)" />
+      <label>Responsive Design Required:</label>
+      <input type="text" name="responsive" value="Yes" />
+      <label>Performance Priorities:</label>
+      <input type="text" name="performance" value="Both, emphasis on mobile speed" />
+
+      <!-- Section 3 -->
+      <h2>3. Expected Scale & Usage</h2>
+      <label>Initial User Base Size (Month 1):</label>
+      <input type="text" name="initialUsers" />
+      <label>Expected Growth Over 1 Year:</label>
+      <input type="text" name="growth" />
+      <label>Peak Concurrent Users:</label>
+      <input type="text" name="peakUsers" />
+      <label>Geographical Regions Served:</label>
+      <textarea name="regions"></textarea>
+      <label>Availability Target:</label>
+      <input type="text" name="availability" value="99.9%" />
+
+      <!-- Section 4 -->
+      <h2>4. Data Requirements</h2>
+      <label>Estimated Total Data Size After 1 Year:</label>
+      <input type="text" name="dataSize" />
+      <label>Data Sensitivity:</label>
+      <textarea name="dataSensitivity"></textarea>
+
+      <!-- Section 5 -->
+      <h2>5. User Roles & Permissions</h2>
+      <label>Role 1:</label>
+      <textarea name="role1" placeholder="Admin - full access, user management, settings"></textarea>
+      <label>Role 2:</label>
+      <textarea name="role2" placeholder="Standard User - access to core AI features"></textarea>
+      <label>Role 3 (optional):</label>
+      <textarea name="role3"></textarea>
+
+      <!-- Section 6 -->
+      <h2>6. Key Features & Flows</h2>
+      <label>Core User-Facing Features:</label>
+      <textarea name="features"></textarea>
+      <label>Administrative Features:</label>
+      <textarea name="adminFeatures"></textarea>
+      <label>User Journey / Primary Flow:</label>
+      <textarea name="userFlow"></textarea>
+
+      <!-- Section 7 -->
+      <h2>7. Technology Stack Preferences</h2>
+      <textarea name="techStack"></textarea>
+
+      <!-- Section 8 -->
+      <h2>8. Deployment & Hosting</h2>
+      <textarea name="deployment"></textarea>
+
+      <!-- Section 9 -->
+      <h2>9. Security & Compliance</h2>
+      <textarea name="security"></textarea>
+
+      <!-- Section 10 -->
+      <h2>10. Maintenance & Monitoring</h2>
+      <textarea name="maintenance"></textarea>
+
+      <!-- Section 11 -->
+      <h2>11. Monetization Strategy</h2>
+      <textarea name="monetization"></textarea>
+
+      <!-- Section 12 -->
+      <h2>12. Legal & Compliance</h2>
+      <textarea name="legal"></textarea>
+
+      <!-- Section 13 -->
+      <h2>13. User Engagement & Communication</h2>
+      <textarea name="engagement"></textarea>
+
+      <!-- Section 14 -->
+      <h2>14. Content & Asset Management</h2>
+      <textarea name="contentManagement"></textarea>
+
+      <!-- Section 15 -->
+      <h2>15. Recommendations Needed (For the AI)</h2>
+      <textarea name="recommendations"></textarea>
+
+      <!-- Section 16 -->
+      <h2>16. Constraints</h2>
+      <label>Budget Range:</label>
+      <input type="text" name="budget" />
+      <label>Team Size & Skills:</label>
+      <textarea name="team"></textarea>
+      <label>Deadline / Launch Target:</label>
+      <input type="date" name="deadline" />
+
+      <!-- Buttons -->
+      <div class="button-group">
+        <button type="button" onclick="downloadJSON()">Download JSON (Raw Data)</button>
+        <button type="button" onclick="downloadPrompt()">Download AI Studio Prompt</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    // Download raw JSON data from form
+    function downloadJSON() {
+      const formData = new FormData(document.getElementById("projectForm"));
+      const jsonData = {};
+      formData.forEach((value, key) => jsonData[key] = value);
+      const blob = new Blob([JSON.stringify(jsonData, null, 2)], {type: 'application/json'});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "project-spec.json";
+      a.click();
+    }
+
+    // Download AI Studio Prompt with pre-filled system instructions
+    function downloadPrompt() {
+      const formData = new FormData(document.getElementById("projectForm"));
+      const jsonData = {};
+      formData.forEach((value, key) => jsonData[key] = value);
+
+      const systemPrompt = `SYSTEM INSTRUCTIONS:
+You are an expert AI assistant helping to design and plan software projects for Google AI Studio deployment. 
+Carefully read the project specification below, then suggest optimal architecture, tech stack, deployment plan, 
+and potential improvements while considering scalability, security, and user experience.
+
+USER PROJECT SPECIFICATION:
+${JSON.stringify(jsonData, null, 2)}
+`;
+
+      const blob = new Blob([systemPrompt], {type: 'text/plain'});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "ai-studio-prompt.txt";
+      a.click();
+    }
+  </script>
+</body>
+</html>
