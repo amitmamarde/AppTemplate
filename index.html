@@ -28,7 +28,7 @@
 <div class="container my-5">
     <div class="text-center mb-4">
         <h1>AI Application Specification Generator</h1>
-        <p class="lead">Fill out this form to standardize your project requirements. Then, generate a JSON spec or a ready-to-use prompt for Google AI Studio.</p>
+        <p class="lead">Fill out this form to standardize your project requirements. The fields are pre-filled with common best practices and recommendations.</p>
     </div>
 
     <form id="app-spec-form">
@@ -56,125 +56,125 @@ const formSections = [
     {
         title: "1. Basic Project Overview",
         fields: [
-            { id: "appName", label: "Application Name / Working Title", type: "text", placeholder: "e.g., Nexus AI Assistant" },
-            { id: "primaryPurpose", label: "Primary Purpose / Problem to Solve", type: "textarea", placeholder: "Clearly articulate the core business problem the AI is intended to solve." },
-            { id: "targetAudience", label: "Target Audience", type: "text", placeholder: "e.g., Internal employees, marketing teams, general public" },
+            { id: "appName", label: "Application Name / Working Title", type: "text", placeholder: "[User to define]" },
+            { id: "primaryPurpose", label: "Primary Purpose / Problem to Solve", type: "textarea", placeholder: "[User to define - Clearly articulate the core business problem the AI is intended to solve.]" },
+            { id: "targetAudience", label: "Target Audience", type: "text", placeholder: "[User to define - e.g., Internal employees, marketing teams, general public]" },
         ],
     },
     {
         title: "2. Target Platforms & Accessibility",
         fields: [
-            { id: "targetDevices", label: "Primary Target Devices", type: "select", options: ["All (Desktop, Tablet, Mobile)", "Desktop Only", "Mobile Only"] },
-            { id: "performancePriorities", label: "Performance Priorities", type: "select", options: ["Mobile Speed", "Desktop UX", "Both, with emphasis on mobile speed"] },
-            { id: "accessibilityRequirements", label: "Accessibility Requirements", type: "select", options: ["None", "WCAG 2.1 Level A", "WCAG 2.1 Level AA (Standard)", "WCAG 2.1 Level AAA"] },
+            { id: "targetDevices", label: "Primary Target Devices", type: "select", options: ["All (Desktop, Tablet, Mobile)", "Desktop Only", "Mobile Only"], recommended: "All (Desktop, Tablet, Mobile)" },
+            { id: "performancePriorities", label: "Performance Priorities", type: "select", options: ["Mobile Speed", "Desktop UX", "Both, with emphasis on mobile speed"], recommended: "Both, with emphasis on mobile speed" },
+            { id: "accessibilityRequirements", label: "Accessibility Requirements", type: "select", options: ["None", "WCAG 2.1 Level A", "WCAG 2.1 Level AA (Standard)", "WCAG 2.1 Level AAA"], recommended: "WCAG 2.1 Level AA (Standard)" },
         ],
     },
     {
         title: "3. Localization & Internationalization",
         fields: [
-            { id: "languages", label: "Target Languages", type: "text", placeholder: "e.g., English (US), Spanish (ES), Japanese" },
-            { id: "rtlSupport", label: "Right-to-Left (RTL) Language Support Required?", type: "select", options: ["No", "Yes"] },
+            { id: "languages", label: "Target Languages", type: "text", placeholder: "English (US) [Add other languages if needed, e.g., Spanish (ES), Japanese]" },
+            { id: "rtlSupport", label: "Right-to-Left (RTL) Language Support Required?", type: "select", options: ["No", "Yes"], recommended: "No" },
         ],
     },
     {
         title: "4. Expected Scale & Usage",
         fields: [
-            { id: "initialUsers", label: "Initial User Base (Month 1)", type: "number", placeholder: "1000" },
-            { id: "growthExpectation", label: "Expected Growth (1 Year)", type: "text", placeholder: "e.g., 10x, 50,000 users" },
-            { id: "peakConcurrentUsers", label: "Peak Concurrent Users Expected", type: "number", placeholder: "100" },
-            { id: "geoRegions", label: "Geographical Regions Served", type: "text", placeholder: "e.g., North America, Europe, Global" },
-            { id: "availabilityTarget", label: "Availability Target", type: "select", options: ["99%", "99.9% (Standard)", "99.99%"] },
+            { id: "initialUsers", label: "Initial User Base (Month 1)", type: "number", placeholder: "[User to define - e.g., 100, 1000]" },
+            { id: "growthExpectation", label: "Expected Growth (1 Year)", type: "text", placeholder: "[User to define - e.g., 10x, 50,000 users]" },
+            { id: "peakConcurrentUsers", label: "Peak Concurrent Users Expected", type: "number", placeholder: "[User to define - e.g., 100]" },
+            { id: "geoRegions", label: "Geographical Regions Served", type: "text", placeholder: "[User to define - e.g., North America, Europe, Global]" },
+            { id: "availabilityTarget", label: "Availability Target", type: "select", options: ["99%", "99.9% (Standard)", "99.99%"], recommended: "99.9% (Standard)" },
         ],
     },
     {
         title: "5. Data Requirements",
         fields: [
-            { id: "dataSize", label: "Estimated Total Data Size (1 Year)", type: "text", placeholder: "e.g., 500 GB, 2 TB" },
-            { id: "dataType", label: "Data Type(s)", type: "select", options: ["Structured (tables)", "Unstructured (text, images)", "Mixed (Recommended)"] },
-            { id: "dataStorage", label: "Data Storage Approach", type: "select", options: ["Relational DB", "NoSQL", "Cloud Storage", "Mixed (Cloud SQL + Cloud Storage + Firestore)"] },
-            { id: "dataSensitivity", label: "Data Sensitivity", type: "select", options: ["Public", "Internal", "Confidential", "Highly Regulated (HIPAA, GDPR)"] },
+            { id: "dataSize", label: "Estimated Total Data Size (1 Year)", type: "text", placeholder: "[User to define - e.g., 500 GB, 2 TB]" },
+            { id: "dataType", label: "Data Type(s)", type: "select", options: ["Structured (tables)", "Unstructured (text, images)", "Mixed (Recommended)"], recommended: "Mixed (Recommended)" },
+            { id: "dataStorage", label: "Data Storage Approach", type: "select", options: ["Relational DB", "NoSQL", "Cloud Storage", "Mixed (Cloud SQL + Cloud Storage + Firestore)"], recommended: "Mixed (Cloud SQL + Cloud Storage + Firestore)" },
+            { id: "dataSensitivity", label: "Data Sensitivity", type: "select", options: ["Public", "Internal", "Confidential", "Highly Regulated (HIPAA, GDPR)"], recommended: "Confidential" },
         ],
     },
     {
         title: "6. User Roles & Permissions",
         fields: [
-            { id: "userRoles", label: "List each role and its main capabilities", type: "textarea", placeholder: "Admin -> Full access\nStandard User -> Core AI features\nModerator -> Review content" },
+            { id: "userRoles", label: "List each role and its main capabilities", type: "textarea", placeholder: "Standard RBAC Model:\n- Admin -> Full access to all features, user management, system settings.\n- Standard User -> Access to core AI features, management of their own data.\n- [User to define other roles, e.g., Moderator]" },
         ],
     },
     {
         title: "7. Integrations (APIs, Webhooks, Services)",
         fields: [
-            { id: "integrationsList", label: "List all required integrations", type: "textarea", placeholder: "e.g., Stripe (Payments), Salesforce (CRM), Slack (Notifications), Google Calendar API" },
+            { id: "integrationsList", label: "List all required integrations", type: "textarea", placeholder: "[User to define - e.g., Stripe (Payments), Salesforce (CRM), Slack (Notifications), Google Calendar API]. AI will suggest libraries/SDKs for these." },
         ],
     },
     {
         title: "8. Technology Stack & AI Strategy",
         fields: [
-            { id: "frontendFramework", label: "Frontend Framework", type: "select", options: ["AI Suggest", "React (Next.js)", "Vue (Nuxt.js)", "Angular"] },
-            { id: "backendFramework", label: "Backend Framework", type: "select", options: ["AI Suggest", "Node.js (Express/NestJS)", "Python (FastAPI/Flask)", "Django", "Laravel"] },
-            { id: "database", label: "Database", type: "select", options: ["AI Suggest", "PostgreSQL", "MySQL", "MongoDB", "Firestore"] },
-            { id: "aiModel", label: "AI Model Version", type: "select", options: ["Gemini Pro", "Gemini Pro Vision", "Gemini Flash", "Custom / Fine-tuned model"] },
-            { id: "aiPromptingStrategy", label: "AI Prompting Strategy", type: "textarea", placeholder: "Describe how AI features should be prompted. e.g., 'Use a Chain-of-Thought approach for complex queries. Use Retrieval-Augmented Generation (RAG) with our internal docs for Q&A.'" },
+            { id: "frontendFramework", label: "Frontend Framework", type: "select", options: ["AI Suggest", "React (Next.js)", "Vue (Nuxt.js)", "Angular"], recommended: "AI Suggest" },
+            { id: "backendFramework", label: "Backend Framework", type: "select", options: ["AI Suggest", "Node.js (Express/NestJS)", "Python (FastAPI/Flask)", "Django", "Laravel"], recommended: "AI Suggest" },
+            { id: "database", label: "Database", type: "select", options: ["AI Suggest", "PostgreSQL", "MySQL", "MongoDB", "Firestore"], recommended: "AI Suggest" },
+            { id: "aiModel", label: "AI Model Version", type: "select", options: ["Gemini Pro", "Gemini Pro Vision", "Gemini Flash", "Custom / Fine-tuned model"], recommended: "Gemini Pro" },
+            { id: "aiPromptingStrategy", label: "AI Prompting Strategy", type: "textarea", placeholder: "[User to define - e.g., 'Use Retrieval-Augmented Generation (RAG) with our internal docs for Q&A. Use a Chain-of-Thought approach for complex queries.' Define how AI features should be prompted.]" },
         ],
     },
     {
         title: "9. Deployment & Hosting",
         fields: [
-            { id: "hostingPreference", label: "Hosting Preference", type: "select", options: ["Google Cloud Platform (GCP)", "AWS", "Azure", "Vercel", "Netlify"] },
-            { id: "deploymentStyle", label: "Deployment Style", type: "select", options: ["Serverless (Cloud Run/Functions)", "Containerized (Kubernetes/GKE)", "Bare Metal"] },
-            { id: "environments", label: "Environments Required", type: "text", placeholder: "Development, Staging, Production" },
+            { id: "hostingPreference", label: "Hosting Preference", type: "select", options: ["Google Cloud Platform (GCP)", "AWS", "Azure", "Vercel", "Netlify"], recommended: "Google Cloud Platform (GCP)" },
+            { id: "deploymentStyle", label: "Deployment Style", type: "select", options: ["Serverless (Cloud Run/Functions)", "Containerized (Kubernetes/GKE)", "Bare Metal"], recommended: "Serverless (Cloud Run/Functions)" },
+            { id: "environments", label: "Environments Required", type: "text", placeholder: "Standard: Development, Staging, Production", value: "Development, Staging, Production" },
         ],
     },
     {
         title: "10. Security, Logging & Compliance",
         fields: [
-            { id: "authentication", label: "Authentication Method", type: "select", options: ["Email/Password", "OAuth (Google, GitHub)", "SSO", "Magic Link"] },
-            { id: "complianceNeeds", label: "Compliance Confirmation", type: "select", options: ["None", "GDPR", "HIPAA", "PCI DSS"] },
-            { id: "specialComplianceNotes", label: "Special Compliance Notes", type: "textarea", placeholder: "e.g., 'For GDPR, ensure data residency in the EU. For HIPAA, all PII must be encrypted at rest and in transit.'" },
-            { id: "loggingAudit", label: "Logging & Audit Trails", type: "select", options: ["Basic Request Logging", "Detailed Audit Trails (for regulated apps)"] },
+            { id: "authentication", label: "Authentication Method", type: "select", options: ["OAuth (Google, GitHub)", "Email/Password", "SSO", "Magic Link"], recommended: "OAuth (Google, GitHub)" },
+            { id: "complianceNeeds", label: "Compliance Confirmation", type: "select", options: ["None", "GDPR", "HIPAA", "PCI DSS"], recommended: "None" },
+            { id: "specialComplianceNotes", label: "Special Compliance Notes", type: "textarea", placeholder: "[User to define - e.g., 'For GDPR, ensure data residency in the EU. For HIPAA, all PII must be encrypted at rest and in transit.']" },
+            { id: "loggingAudit", label: "Logging & Audit Trails", type: "select", options: ["Basic Request Logging", "Detailed Audit Trails (for regulated apps)"], recommended: "Basic Request Logging" },
         ],
     },
     {
         title: "11. Monetization Strategy",
         fields: [
-            { id: "monetizationModel", label: "Monetization Model", type: "select", options: ["Not for Profit / Internal", "Subscription", "Pay-per-use", "One-time Purchase", "Freemium", "Advertising"] },
-            { id: "paymentGateway", label: "Payment Gateway", type: "select", options: ["None", "Stripe", "PayPal", "Lemon Squeezy"] },
-            { id: "trialPeriod", label: "Trial Period Details", type: "text", placeholder: "e.g., 14-day free trial, 100 free AI credits" },
+            { id: "monetizationModel", label: "Monetization Model", type: "select", options: ["Not for Profit / Internal", "Subscription", "Pay-per-use", "One-time Purchase", "Freemium", "Advertising"], recommended: "Not for Profit / Internal" },
+            { id: "paymentGateway", label: "Payment Gateway", type: "select", options: ["None", "Stripe", "PayPal", "Lemon Squeezy"], recommended: "None" },
+            { id: "trialPeriod", label: "Trial Period Details", type: "text", placeholder: "[User to define if monetized - e.g., 14-day free trial, 100 free AI credits]" },
         ],
     },
     {
         title: "12. Legal & User Communication",
         fields: [
             { id: "legalDocs", label: "Required Legal Docs Confirmation", type: "text", value: "Terms of Service, Privacy Policy, Cookie Policy, Acceptable Use Policy are standard.", disabled: true },
-            { id: "emailProvider", label: "Transactional Email Provider", type: "select", options: ["None", "SendGrid", "Mailgun", "Amazon SES"] },
+            { id: "emailProvider", label: "Transactional Email Provider", type: "select", options: ["None", "SendGrid", "Mailgun", "Amazon SES"], recommended: "SendGrid" },
         ],
     },
     {
         title: "13. Offline & Low-Connectivity Behavior",
         fields: [
-            { id: "offlineBehavior", label: "Describe expected behavior when offline", type: "textarea", placeholder: "e.g., 'App should show a notification. Key data should be cached for read-only access. Queue actions to sync when back online.'" },
+            { id: "offlineBehavior", label: "Describe expected behavior when offline", type: "textarea", placeholder: "Standard behavior: App should show a notification that the user is offline. Key data can be cached for read-only access. Queue actions to sync when back online." },
         ],
     },
     {
         title: "14. Testing, Versioning & Release Management",
         fields: [
-            { id: "testingStrategy", label: "Testing Strategy", type: "textarea", placeholder: "e.g., 'Unit tests for backend logic (>80% coverage), E2E tests for critical user flows (login, payment), manual QA before release.'" },
-            { id: "versioningStrategy", label: "Versioning & Release Management", type: "text", placeholder: "e.g., Semantic Versioning (SemVer), CI/CD on merge to main branch" },
+            { id: "testingStrategy", label: "Testing Strategy", type: "textarea", placeholder: "Standard strategy: Unit tests for backend logic (>80% coverage), End-to-End (E2E) tests for critical user flows (e.g., login, core AI feature), and manual QA before each release." },
+            { id: "versioningStrategy", label: "Versioning & Release Management", type: "text", placeholder: "Standard practice: Semantic Versioning (SemVer) and CI/CD pipeline deploying on merge to the main branch.", value: "Semantic Versioning (SemVer), CI/CD on merge to main" },
         ],
     },
     {
         title: "15. Disaster Recovery & Future-Proofing",
         fields: [
-            { id: "disasterRecovery", label: "Disaster Recovery (DR) Requirements", type: "textarea", placeholder: "e.g., RPO (Recovery Point Objective): 1 hour. RTO (Recovery Time Objective): 4 hours. Daily backups stored in a separate region." },
-            { id: "futureProofing", label: "Future-Proofing Considerations", type: "textarea", placeholder: "Features you might want later but won't implement now. e.g., 'Future support for team accounts, native mobile app, enterprise SSO integration.'" },
+            { id: "disasterRecovery", label: "Disaster Recovery (DR) Requirements", type: "textarea", placeholder: "Standard requirement: RPO (Recovery Point Objective): 1 hour. RTO (Recovery Time Objective): 4 hours. Achieved via daily automated backups stored in a separate geographical region." },
+            { id: "futureProofing", label: "Future-Proofing Considerations", type: "textarea", placeholder: "[User to define - List features you might want later but won’t implement now. e.g., 'Future support for team accounts, native mobile app, enterprise SSO integration.']" },
         ],
     },
     {
         title: "16. Constraints",
         fields: [
-            { id: "budget", label: "Budget Range", type: "text", placeholder: "e.g., < $1000/month, $5,000-$10,000 project budget" },
-            { id: "team", label: "Team Size & Skills", type: "text", placeholder: "e.g., 1 full-stack JS dev, 1 part-time UI/UX designer" },
-            { id: "deadline", label: "Deadline / Launch Target", type: "text", placeholder: "e.g., Q4 2025, 3 months from project start" },
+            { id: "budget", label: "Budget Range", type: "text", placeholder: "[User to define - e.g., < $1000/month, $5,000 project budget]" },
+            { id: "team", label: "Team Size & Skills", type: "text", placeholder: "[User to define - e.g., 1 full-stack JS dev, 1 part-time UI/UX designer]" },
+            { id: "deadline", label: "Deadline / Launch Target", type: "text", placeholder: "[User to define - e.g., Q4 2025, 3 months from project start]" },
         ],
     },
 ];
@@ -210,6 +210,9 @@ formSections.forEach(section => {
                 const option = document.createElement('option');
                 option.value = opt;
                 option.textContent = opt;
+                if (field.recommended === opt) {
+                    option.selected = true;
+                }
                 input.appendChild(option);
             });
         } else {
@@ -263,7 +266,7 @@ function downloadJSON() {
 
 function generateAIPrompt() {
     const data = getFormData();
-    if (Object.keys(data).length === 1) { // Only contains the disabled field
+    if (Object.keys(data).length <= 1) { 
         alert("Please fill out some fields before generating the prompt.");
         return;
     }
@@ -277,7 +280,7 @@ function generateAIPrompt() {
     const addSection = (title, fields) => {
         let sectionContent = "";
         fields.forEach(field => {
-            if (data[field.id]) {
+            if (data[field.id] && data[field.id] !== field.placeholder) {
                 sectionContent += `*   **${field.label}:** ${data[field.id].replace(/\n/g, '\n    ')}\n`;
             }
         });
@@ -287,7 +290,7 @@ function generateAIPrompt() {
     };
 
     formSections.forEach(section => {
-        const fields = section.fields.map(f => ({ id: f.id, label: f.label }));
+        const fields = section.fields.map(f => ({ id: f.id, label: f.label, placeholder: f.placeholder || "" }));
         addSection(section.title, fields);
     });
 
