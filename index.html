@@ -1,211 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Google AI Studio Project Spec Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    h1, h2 {
-      color: #333;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 10px;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 4px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-    textarea {
-      min-height: 60px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 4px;
-      background: #007bff;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    .button-group {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Application Specification Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .container { max-width: 900px; }
+        .card { margin-bottom: 1.5rem; }
+        .card-header { font-weight: bold; background-color: #e9ecef; }
+        .form-label { font-weight: 500; }
+        #prompt-container { display: none; }
+        #prompt-output { 
+            white-space: pre-wrap; 
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 1rem;
+            border-radius: 6px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Google AI Studio Project Specification Form</h1>
-    <form id="projectForm">
 
-      <!-- Section 1 -->
-      <h2>1. Basic Project Overview</h2>
-      <label>Application Name / Working Title:</label>
-      <input type="text" name="appName" />
-      <label>Primary Purpose / Problem to Solve:</label>
-      <textarea name="purpose"></textarea>
-      <label>Target Audience:</label>
-      <textarea name="audience"></textarea>
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h1>AI Application Specification Generator</h1>
+        <p class="lead">Fill out this form to standardize your project requirements. Then, generate a JSON spec or a ready-to-use prompt for Google AI Studio.</p>
+    </div>
 
-      <!-- Section 2 -->
-      <h2>2. Target Platforms & Devices</h2>
-      <label>Primary Target Devices:</label>
-      <input type="text" name="devices" value="All (Desktop, Tablet, Mobile)" />
-      <label>Responsive Design Required:</label>
-      <input type="text" name="responsive" value="Yes" />
-      <label>Performance Priorities:</label>
-      <input type="text" name="performance" value="Both, emphasis on mobile speed" />
-
-      <!-- Section 3 -->
-      <h2>3. Expected Scale & Usage</h2>
-      <label>Initial User Base Size (Month 1):</label>
-      <input type="text" name="initialUsers" />
-      <label>Expected Growth Over 1 Year:</label>
-      <input type="text" name="growth" />
-      <label>Peak Concurrent Users:</label>
-      <input type="text" name="peakUsers" />
-      <label>Geographical Regions Served:</label>
-      <textarea name="regions"></textarea>
-      <label>Availability Target:</label>
-      <input type="text" name="availability" value="99.9%" />
-
-      <!-- Section 4 -->
-      <h2>4. Data Requirements</h2>
-      <label>Estimated Total Data Size After 1 Year:</label>
-      <input type="text" name="dataSize" />
-      <label>Data Sensitivity:</label>
-      <textarea name="dataSensitivity"></textarea>
-
-      <!-- Section 5 -->
-      <h2>5. User Roles & Permissions</h2>
-      <label>Role 1:</label>
-      <textarea name="role1" placeholder="Admin - full access, user management, settings"></textarea>
-      <label>Role 2:</label>
-      <textarea name="role2" placeholder="Standard User - access to core AI features"></textarea>
-      <label>Role 3 (optional):</label>
-      <textarea name="role3"></textarea>
-
-      <!-- Section 6 -->
-      <h2>6. Key Features & Flows</h2>
-      <label>Core User-Facing Features:</label>
-      <textarea name="features"></textarea>
-      <label>Administrative Features:</label>
-      <textarea name="adminFeatures"></textarea>
-      <label>User Journey / Primary Flow:</label>
-      <textarea name="userFlow"></textarea>
-
-      <!-- Section 7 -->
-      <h2>7. Technology Stack Preferences</h2>
-      <textarea name="techStack"></textarea>
-
-      <!-- Section 8 -->
-      <h2>8. Deployment & Hosting</h2>
-      <textarea name="deployment"></textarea>
-
-      <!-- Section 9 -->
-      <h2>9. Security & Compliance</h2>
-      <textarea name="security"></textarea>
-
-      <!-- Section 10 -->
-      <h2>10. Maintenance & Monitoring</h2>
-      <textarea name="maintenance"></textarea>
-
-      <!-- Section 11 -->
-      <h2>11. Monetization Strategy</h2>
-      <textarea name="monetization"></textarea>
-
-      <!-- Section 12 -->
-      <h2>12. Legal & Compliance</h2>
-      <textarea name="legal"></textarea>
-
-      <!-- Section 13 -->
-      <h2>13. User Engagement & Communication</h2>
-      <textarea name="engagement"></textarea>
-
-      <!-- Section 14 -->
-      <h2>14. Content & Asset Management</h2>
-      <textarea name="contentManagement"></textarea>
-
-      <!-- Section 15 -->
-      <h2>15. Recommendations Needed (For the AI)</h2>
-      <textarea name="recommendations"></textarea>
-
-      <!-- Section 16 -->
-      <h2>16. Constraints</h2>
-      <label>Budget Range:</label>
-      <input type="text" name="budget" />
-      <label>Team Size & Skills:</label>
-      <textarea name="team"></textarea>
-      <label>Deadline / Launch Target:</label>
-      <input type="date" name="deadline" />
-
-      <!-- Buttons -->
-      <div class="button-group">
-        <button type="button" onclick="downloadJSON()">Download JSON (Raw Data)</button>
-        <button type="button" onclick="downloadPrompt()">Download AI Studio Prompt</button>
-      </div>
-
+    <form id="app-spec-form">
+        <!-- Sections will be injected here by JavaScript -->
     </form>
-  </div>
 
-  <script>
-    // Download raw JSON data from form
-    function downloadJSON() {
-      const formData = new FormData(document.getElementById("projectForm"));
-      const jsonData = {};
-      formData.forEach((value, key) => jsonData[key] = value);
-      const blob = new Blob([JSON.stringify(jsonData, null, 2)], {type: 'application/json'});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "project-spec.json";
-      a.click();
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center my-4">
+        <button type="button" class="btn btn-primary btn-lg" onclick="downloadJSON()">Download Project Spec (JSON)</button>
+        <button type="button" class="btn btn-success btn-lg" onclick="generateAIPrompt()">Generate AI Prompt</button>
+    </div>
+
+    <div id="prompt-container" class="mt-4">
+        <h3>Generated AI Prompt</h3>
+        <p>Copy the prompt below and paste it into the Google AI Studio build section.</p>
+        <div class="position-relative">
+            <pre id="prompt-output"></pre>
+            <button class="btn btn-light btn-sm position-absolute top-0 end-0 m-2" onclick="copyPromptToClipboard()">Copy</button>
+        </div>
+    </div>
+</div>
+
+<script>
+//prettier-ignore
+const formSections = [
+    {
+        title: "1. Basic Project Overview",
+        fields: [
+            { id: "appName", label: "Application Name / Working Title", type: "text", placeholder: "e.g., Nexus AI Assistant" },
+            { id: "primaryPurpose", label: "Primary Purpose / Problem to Solve", type: "textarea", placeholder: "Clearly articulate the core business problem the AI is intended to solve." },
+            { id: "targetAudience", label: "Target Audience", type: "text", placeholder: "e.g., Internal employees, marketing teams, general public" },
+        ],
+    },
+    {
+        title: "2. Target Platforms & Accessibility",
+        fields: [
+            { id: "targetDevices", label: "Primary Target Devices", type: "select", options: ["All (Desktop, Tablet, Mobile)", "Desktop Only", "Mobile Only"] },
+            { id: "performancePriorities", label: "Performance Priorities", type: "select", options: ["Mobile Speed", "Desktop UX", "Both, with emphasis on mobile speed"] },
+            { id: "accessibilityRequirements", label: "Accessibility Requirements", type: "select", options: ["None", "WCAG 2.1 Level A", "WCAG 2.1 Level AA (Standard)", "WCAG 2.1 Level AAA"] },
+        ],
+    },
+    {
+        title: "3. Localization & Internationalization",
+        fields: [
+            { id: "languages", label: "Target Languages", type: "text", placeholder: "e.g., English (US), Spanish (ES), Japanese" },
+            { id: "rtlSupport", label: "Right-to-Left (RTL) Language Support Required?", type: "select", options: ["No", "Yes"] },
+        ],
+    },
+    {
+        title: "4. Expected Scale & Usage",
+        fields: [
+            { id: "initialUsers", label: "Initial User Base (Month 1)", type: "number", placeholder: "1000" },
+            { id: "growthExpectation", label: "Expected Growth (1 Year)", type: "text", placeholder: "e.g., 10x, 50,000 users" },
+            { id: "peakConcurrentUsers", label: "Peak Concurrent Users Expected", type: "number", placeholder: "100" },
+            { id: "geoRegions", label: "Geographical Regions Served", type: "text", placeholder: "e.g., North America, Europe, Global" },
+            { id: "availabilityTarget", label: "Availability Target", type: "select", options: ["99%", "99.9% (Standard)", "99.99%"] },
+        ],
+    },
+    {
+        title: "5. Data Requirements",
+        fields: [
+            { id: "dataSize", label: "Estimated Total Data Size (1 Year)", type: "text", placeholder: "e.g., 500 GB, 2 TB" },
+            { id: "dataType", label: "Data Type(s)", type: "select", options: ["Structured (tables)", "Unstructured (text, images)", "Mixed (Recommended)"] },
+            { id: "dataStorage", label: "Data Storage Approach", type: "select", options: ["Relational DB", "NoSQL", "Cloud Storage", "Mixed (Cloud SQL + Cloud Storage + Firestore)"] },
+            { id: "dataSensitivity", label: "Data Sensitivity", type: "select", options: ["Public", "Internal", "Confidential", "Highly Regulated (HIPAA, GDPR)"] },
+        ],
+    },
+    {
+        title: "6. User Roles & Permissions",
+        fields: [
+            { id: "userRoles", label: "List each role and its main capabilities", type: "textarea", placeholder: "Admin -> Full access\nStandard User -> Core AI features\nModerator -> Review content" },
+        ],
+    },
+    {
+        title: "7. Integrations (APIs, Webhooks, Services)",
+        fields: [
+            { id: "integrationsList", label: "List all required integrations", type: "textarea", placeholder: "e.g., Stripe (Payments), Salesforce (CRM), Slack (Notifications), Google Calendar API" },
+        ],
+    },
+    {
+        title: "8. Technology Stack & AI Strategy",
+        fields: [
+            { id: "frontendFramework", label: "Frontend Framework", type: "select", options: ["AI Suggest", "React (Next.js)", "Vue (Nuxt.js)", "Angular"] },
+            { id: "backendFramework", label: "Backend Framework", type: "select", options: ["AI Suggest", "Node.js (Express/NestJS)", "Python (FastAPI/Flask)", "Django", "Laravel"] },
+            { id: "database", label: "Database", type: "select", options: ["AI Suggest", "PostgreSQL", "MySQL", "MongoDB", "Firestore"] },
+            { id: "aiModel", label: "AI Model Version", type: "select", options: ["Gemini Pro", "Gemini Pro Vision", "Gemini Flash", "Custom / Fine-tuned model"] },
+            { id: "aiPromptingStrategy", label: "AI Prompting Strategy", type: "textarea", placeholder: "Describe how AI features should be prompted. e.g., 'Use a Chain-of-Thought approach for complex queries. Use Retrieval-Augmented Generation (RAG) with our internal docs for Q&A.'" },
+        ],
+    },
+    {
+        title: "9. Deployment & Hosting",
+        fields: [
+            { id: "hostingPreference", label: "Hosting Preference", type: "select", options: ["Google Cloud Platform (GCP)", "AWS", "Azure", "Vercel", "Netlify"] },
+            { id: "deploymentStyle", label: "Deployment Style", type: "select", options: ["Serverless (Cloud Run/Functions)", "Containerized (Kubernetes/GKE)", "Bare Metal"] },
+            { id: "environments", label: "Environments Required", type: "text", placeholder: "Development, Staging, Production" },
+        ],
+    },
+    {
+        title: "10. Security, Logging & Compliance",
+        fields: [
+            { id: "authentication", label: "Authentication Method", type: "select", options: ["Email/Password", "OAuth (Google, GitHub)", "SSO", "Magic Link"] },
+            { id: "complianceNeeds", label: "Compliance Confirmation", type: "select", options: ["None", "GDPR", "HIPAA", "PCI DSS"] },
+            { id: "specialComplianceNotes", label: "Special Compliance Notes", type: "textarea", placeholder: "e.g., 'For GDPR, ensure data residency in the EU. For HIPAA, all PII must be encrypted at rest and in transit.'" },
+            { id: "loggingAudit", label: "Logging & Audit Trails", type: "select", options: ["Basic Request Logging", "Detailed Audit Trails (for regulated apps)"] },
+        ],
+    },
+    {
+        title: "11. Monetization Strategy",
+        fields: [
+            { id: "monetizationModel", label: "Monetization Model", type: "select", options: ["Not for Profit / Internal", "Subscription", "Pay-per-use", "One-time Purchase", "Freemium", "Advertising"] },
+            { id: "paymentGateway", label: "Payment Gateway", type: "select", options: ["None", "Stripe", "PayPal", "Lemon Squeezy"] },
+            { id: "trialPeriod", label: "Trial Period Details", type: "text", placeholder: "e.g., 14-day free trial, 100 free AI credits" },
+        ],
+    },
+    {
+        title: "12. Legal & User Communication",
+        fields: [
+            { id: "legalDocs", label: "Required Legal Docs Confirmation", type: "text", value: "Terms of Service, Privacy Policy, Cookie Policy, Acceptable Use Policy are standard.", disabled: true },
+            { id: "emailProvider", label: "Transactional Email Provider", type: "select", options: ["None", "SendGrid", "Mailgun", "Amazon SES"] },
+        ],
+    },
+    {
+        title: "13. Offline & Low-Connectivity Behavior",
+        fields: [
+            { id: "offlineBehavior", label: "Describe expected behavior when offline", type: "textarea", placeholder: "e.g., 'App should show a notification. Key data should be cached for read-only access. Queue actions to sync when back online.'" },
+        ],
+    },
+    {
+        title: "14. Testing, Versioning & Release Management",
+        fields: [
+            { id: "testingStrategy", label: "Testing Strategy", type: "textarea", placeholder: "e.g., 'Unit tests for backend logic (>80% coverage), E2E tests for critical user flows (login, payment), manual QA before release.'" },
+            { id: "versioningStrategy", label: "Versioning & Release Management", type: "text", placeholder: "e.g., Semantic Versioning (SemVer), CI/CD on merge to main branch" },
+        ],
+    },
+    {
+        title: "15. Disaster Recovery & Future-Proofing",
+        fields: [
+            { id: "disasterRecovery", label: "Disaster Recovery (DR) Requirements", type: "textarea", placeholder: "e.g., RPO (Recovery Point Objective): 1 hour. RTO (Recovery Time Objective): 4 hours. Daily backups stored in a separate region." },
+            { id: "futureProofing", label: "Future-Proofing Considerations", type: "textarea", placeholder: "Features you might want later but won't implement now. e.g., 'Future support for team accounts, native mobile app, enterprise SSO integration.'" },
+        ],
+    },
+    {
+        title: "16. Constraints",
+        fields: [
+            { id: "budget", label: "Budget Range", type: "text", placeholder: "e.g., < $1000/month, $5,000-$10,000 project budget" },
+            { id: "team", label: "Team Size & Skills", type: "text", placeholder: "e.g., 1 full-stack JS dev, 1 part-time UI/UX designer" },
+            { id: "deadline", label: "Deadline / Launch Target", type: "text", placeholder: "e.g., Q4 2025, 3 months from project start" },
+        ],
+    },
+];
+
+// Dynamically build the form
+const form = document.getElementById('app-spec-form');
+formSections.forEach(section => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    const cardHeader = document.createElement('div');
+    cardHeader.className = 'card-header';
+    cardHeader.textContent = section.title;
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+    
+    section.fields.forEach(field => {
+        const mb3 = document.createElement('div');
+        mb3.className = 'mb-3';
+        
+        const label = document.createElement('label');
+        label.htmlFor = field.id;
+        label.className = 'form-label';
+        label.textContent = field.label;
+        mb3.appendChild(label);
+        
+        let input;
+        if (field.type === 'textarea') {
+            input = document.createElement('textarea');
+            input.rows = 3;
+        } else if (field.type === 'select') {
+            input = document.createElement('select');
+            field.options.forEach(opt => {
+                const option = document.createElement('option');
+                option.value = opt;
+                option.textContent = opt;
+                input.appendChild(option);
+            });
+        } else {
+            input = document.createElement('input');
+            input.type = field.type;
+        }
+        
+        input.id = field.id;
+        input.name = field.id;
+        input.className = 'form-control';
+        if (field.placeholder) input.placeholder = field.placeholder;
+        if (field.value) input.value = field.value;
+        if (field.disabled) input.disabled = true;
+
+        mb3.appendChild(input);
+        cardBody.appendChild(mb3);
+    });
+    
+    card.appendChild(cardHeader);
+    card.appendChild(cardBody);
+    form.appendChild(card);
+});
+
+
+function getFormData() {
+    const formData = new FormData(document.getElementById('app-spec-form'));
+    const data = {};
+    for (const [key, value] of formData.entries()) {
+        if (value.trim()) {
+            data[key] = value.trim();
+        }
     }
+    // Manually add disabled fields
+    data.legalDocs = document.getElementById('legalDocs').value;
+    return data;
+}
 
-    // Download AI Studio Prompt with pre-filled system instructions
-    function downloadPrompt() {
-      const formData = new FormData(document.getElementById("projectForm"));
-      const jsonData = {};
-      formData.forEach((value, key) => jsonData[key] = value);
+function downloadJSON() {
+    const data = getFormData();
+    const jsonString = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'project_spec.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
 
-      const systemPrompt = `SYSTEM INSTRUCTIONS:
-You are an expert AI assistant helping to design and plan software projects for Google AI Studio deployment. 
-Carefully read the project specification below, then suggest optimal architecture, tech stack, deployment plan, 
-and potential improvements while considering scalability, security, and user experience.
+function generateAIPrompt() {
+    const data = getFormData();
+    if (Object.keys(data).length === 1) { // Only contains the disabled field
+        alert("Please fill out some fields before generating the prompt.");
+        return;
+    }
+    
+    let prompt = `I need to build an application and require a comprehensive project setup. Please act as a senior cloud architect and full-stack developer. Based on the following detailed specifications, generate the optimal architecture, technology stack, security best practices, and a step-by-step implementation plan.
 
-USER PROJECT SPECIFICATION:
-${JSON.stringify(jsonData, null, 2)}
+### **Project Specifications**
+
 `;
 
-      const blob = new Blob([systemPrompt], {type: 'text/plain'});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "ai-studio-prompt.txt";
-      a.click();
-    }
-  </script>
+    const addSection = (title, fields) => {
+        let sectionContent = "";
+        fields.forEach(field => {
+            if (data[field.id]) {
+                sectionContent += `*   **${field.label}:** ${data[field.id].replace(/\n/g, '\n    ')}\n`;
+            }
+        });
+        if (sectionContent) {
+            prompt += `#### ${title}\n${sectionContent}\n`;
+        }
+    };
+
+    formSections.forEach(section => {
+        const fields = section.fields.map(f => ({ id: f.id, label: f.label }));
+        addSection(section.title, fields);
+    });
+
+    prompt += `### **AI-Generated Recommendations Required**
+
+Based on all the information provided above, please generate the following:
+
+1.  **Optimal Tech Stack:** A detailed list of recommended frameworks, libraries, and services for both frontend and backend. Justify your choices based on the project's requirements (e.g., scale, team skills).
+2.  **Cloud Architecture on GCP:** A clear description of the recommended Google Cloud architecture. Include services like Cloud Run, Cloud SQL, Cloud Storage, Firestore, Secret Manager, and Cloud Build. A text-based diagram would be highly beneficial.
+3.  **Security & Compliance Plan:** A checklist of critical security measures to implement. This should cover authentication, data encryption, API security (including prompt injection), and steps to meet the specified compliance needs (e.g., GDPR, HIPAA).
+4.  **Scalability & DR Strategy:** An outline of how the serverless architecture will scale. Detail the database and backup strategy to meet the specified RPO/RTO for disaster recovery.
+5.  **Step-by-Step Implementation Plan:** A high-level, phased plan from project setup to deployment, including setting up environments, CI/CD, and key feature development milestones.`;
+    
+    document.getElementById('prompt-output').textContent = prompt;
+    document.getElementById('prompt-container').style.display = 'block';
+    document.getElementById('prompt-container').scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyPromptToClipboard() {
+    const promptText = document.getElementById('prompt-output').textContent;
+    navigator.clipboard.writeText(promptText).then(() => {
+        alert('Prompt copied to clipboard!');
+    }, (err) => {
+        console.error('Could not copy text: ', err);
+        alert('Failed to copy prompt.');
+    });
+}
+</script>
+
 </body>
 </html>
